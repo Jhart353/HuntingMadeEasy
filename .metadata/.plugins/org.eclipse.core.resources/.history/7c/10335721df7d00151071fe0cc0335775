@@ -1,0 +1,111 @@
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
+
+public class HMEGUI extends JFrame {
+
+	private JPanel homeScreen = new JPanel();
+	private JPanel addAnimalScreen = new JPanel();
+	private JPanel viewAnimalScreen = new JPanel();
+	
+	private JTextArea imgTextArea = new JTextArea(5,30);
+	
+	private JScrollPane imgScrollPane = new JScrollPane(imgTextArea);
+	
+	private JButton btnAddAnimals = new JButton("Add Animals");
+	private JButton btnViewAnimals = new JButton("Vew Animals");
+	private JButton btnGoHome = new JButton("Home");
+	
+	private int wHeight = 500;
+	private int wWidth = 800;
+	
+	private int btnWidth = 200;
+	private int btnHeight = 30;
+	
+	private int addBtnX = 150;
+	private int addBtnY = 175;
+	
+	private int viewBtnX = 450;
+	private int viewBtnY = 175;
+	
+	public static void main(String[] args) {
+		new HMEGUI();
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public HMEGUI() {
+		btnAddAnimals.setBounds(addBtnX, addBtnY, btnWidth, btnHeight);		
+		btnViewAnimals.setBounds(viewBtnX, viewBtnY, btnWidth, btnHeight);
+		btnGoHome.setBounds(0,431,btnWidth,btnHeight);
+		btnAddAnimals.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Add Animals Click");
+				imgScrollPane.setBounds(20, 20, 200, 300);
+				addAnimalScreen.setBounds(0, 0, wWidth, wHeight);
+				addAnimalScreen.setLayout(null);
+				addAnimalScreen.add(btnGoHome);
+				addAnimalScreen.add(imgScrollPane);
+				
+				setContentPane(addAnimalScreen);
+				invalidate();
+				validate();
+			}
+		});
+		btnViewAnimals.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("View Animals Click");
+				viewAnimalScreen.setBounds(0, 0, wWidth, wHeight);
+				viewAnimalScreen.setLayout(null);
+				viewAnimalScreen.add(btnGoHome);
+				setContentPane(viewAnimalScreen);
+				invalidate();
+				validate();
+			}
+		});
+		btnGoHome.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Home Click");
+				setContentPane(homeScreen);
+				invalidate();
+				validate();
+			}
+		});
+		homeScreen.setBounds(0, 0, wWidth, wHeight);
+		homeScreen.setLayout(null);
+		homeScreen.add(btnAddAnimals);
+		homeScreen.add(btnViewAnimals);
+		
+		
+		
+		
+		
+		setContentPane(homeScreen);
+		invalidate();
+		validate();
+		setSize(wWidth, wHeight);
+		setTitle("Hunting Made Easy");
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+}
